@@ -4,6 +4,7 @@
 namespace dao\daoServices;
 
 use \PDO;
+use \stdClass;
 
 class DaoServices {
     private $con;
@@ -27,23 +28,31 @@ class DaoServices {
     }
 
     public function registerUser($credt) {
-        $sql = "insert into users (fname,lname,email,phone,pwd) values (?,?,?,?,?)";
-        $stmt = $this->con->prepare($sql);
-        $credt[4] = password_hash($credt[4], PASSWORD_DEFAULT);
-        $stmt->execute([$credt[0],$credt[1],$credt[2],$credt[3],$credt[4]]);
-        echo "user registered";
+        try {
+            $sql = "insert into users (fname,lname,email,phone,pwd) values (?,?,?,?,?)";
+            $stmt = $this->con->prepare($sql);
+            $credt[4] = password_hash($credt[4], PASSWORD_DEFAULT);
+            $msg=new stdClass() ;
+            $chk=$this->checkUserEmail($credt[2]);
+            if ($chk) {
+                $stmt->execute([$credt[0],$credt[1],$credt[2],$credt[3],$credt[4]]);
+                return $msg=["res"=>true,"txt"=>"user registered successfully"];
+            }
+            else {
+                return $msg=["res"=>true,"txt"=>"email already registered"];
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $msg=["res"=>false,"txt"=>"unexcpected"];
+        }
+      
     }
     public function checkUserEmail($email) {
         $sql = "select count(*)as nb from users where email=?";
         $stmt = $this->con->prepare($sql);
         $stmt->execute([$email]);
         $res=$stmt->fetch(PDO::FETCH_OBJ);
-        if ($res->nb == 0) {
-            echo "proceed";
-        }
-        else {
-            echo "declined";
-        }
+        return $res->nb == 0 ? true : false;
 
     }
     public function logInUser($email,$pwd) {
@@ -51,26 +60,29 @@ class DaoServices {
         $stmt = $this->con->prepare($sql);
         $stmt->execute([$email]);
         $res= $stmt->fetch(PDO::FETCH_OBJ);
-        if (password_verify($pwd, $res->pwd)) {
-            // Password is correct
-            // Proceed with user authentication
-            echo "Login successful";
-        } else {
-            // Invalid password
-            echo "Invalid password";
+        $msg=new stdClass();
+        if (!empty($res)) {
+            if (password_verify($pwd, $res->pwd)) {
+                // Password is correct
+                // Proceed with user authentication
+                return $msg=["res"=>true,"txt"=>""];
+            } else {
+                // Invalid password
+                return $msg=["res"=>false,"txt"=>"Invalid password"];
+            }
+        }else {
+            return $msg=["res"=>false,"txt"=>"user with email not regisetred"];
         }
 
     }
+    
 }
 
 // $dao=new DaoServices();
 // $dao->checkUserEmail("newemail");
 // $dao->logInUser("email","pwd1");
 // $dao->registerUser($arrayName = array("abdo","serghini","email","phone","pwd"));
-// var_dump($dao->getAll("city"));
-// var_dump($dao->getAll("country"));
-// var_dump($dao->getCitysOf("afg"));
-// var_dump($dao->getCitysOf("are"));
+
 
 
 

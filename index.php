@@ -112,10 +112,11 @@ if (isset($_GET['url'])) {
         break;
     
         case !empty($url[0])&&empty($url[1]):
-        switch ($url[0]) {
-            case '':
-        }
-        break;
+          require_once __DIR__.'/metier/metierServices.php';
+        // switch ($url[0]) {
+        //     case '':
+        // }
+        // break;
     
         case !empty($url[0])&&!empty($url[1])&&empty($url[2]):
         require_once __DIR__.'/dao/daoServices.php';
