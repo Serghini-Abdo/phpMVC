@@ -55,6 +55,14 @@ class DaoServices {
         return $res->nb == 0 ? true : false;
 
     }
+    public function checkUserRole($id) {
+        $sql = "select role  from users where id=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute([$id]);
+        $res=$stmt->fetch(PDO::FETCH_OBJ);
+        return $res->role == "admin" ? true : false;
+
+    }
     public function logInUser($email,$pwd) {
         $sql = "select * from users where email=?";
         $stmt = $this->con->prepare($sql);

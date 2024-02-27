@@ -8,7 +8,7 @@
     <a class="navbar-brand" href="/phpMVC/home/continent"><i class="fa-solid fa-earth-africa"></i> World</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+      <span class="navbar-toggler-icon"><!-- <i class="fa-solid fa-bars"></i> --></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -80,13 +80,13 @@
         </li>
         <li class="nav-item">
             <div class="form-checkform-switch me-2">
-            <input
+            <!-- <input
             class="form-check-input p-2"
             type="checkbox"
             role="switch"
             id="flexSwitchCkeckCheked"
             checked
-            onclick="toggleMode()">
+            onclick="toggleMode()"> -->
             </div>
         </li>
         
