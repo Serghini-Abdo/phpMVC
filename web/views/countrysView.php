@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$title ?></title>
 </head>
-<body data-bs-theme="dark">
+<body>
 <h1><?=$titre?></h1>
     <a href='#'>Ajouter Salarie</a>
     <table class="table table-striped">
