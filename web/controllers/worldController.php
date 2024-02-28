@@ -9,7 +9,7 @@ class WorldController {
         $title="world";
         $titre="countries list";
         $test=new Services();
-        $list=$test->findAll("country");
+        $list=$test->getAll("country");
         require_once __DIR__ ."/../views/countrysView.php";
     }
     public function contact() {
@@ -18,6 +18,7 @@ class WorldController {
 
     }
 }
+
 
 
 

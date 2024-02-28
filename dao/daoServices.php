@@ -12,14 +12,47 @@ class DaoServices {
     public function __construct() {
         $this->con = new PDO("mysql:host=localhost;dbname=world","root","") or die("echec de connexion avec DB");
     }
-    public function getAll($tab) {
-        $sql = "select * from $tab limit 5 ";
+    public function selectAll($tab) {
+        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from $tab ";
         $stmt = $this->con->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        $res=$stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($res as $row) {
+            $row->Capital = $this->selectCapital($row->Capital);
+        }
+        return $res;
 
     }
-    public function getCitysOf($cntr) {
+    public function selectCapital($cap) {
+        $sql = "select Name from city where ID=? ";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute([$cap]);
+        $res=$stmt->fetch(PDO::FETCH_OBJ);
+        return $res->Name;
+
+    }
+    public function selectByContinent($tab,$cont) {
+        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from $tab where continent=? ";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute([$cont]);
+        $res=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $res["capital"] = $this->selectCapital($res["capital"]);
+        return $res;
+
+    }
+    public function selectByRegion($tab, $reg) {
+        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from $tab where region=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute([$reg]);
+        
+        $res=$stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($res as $row) {
+            $row->Capital = $this->selectCapital($row->Capital);
+        }
+        return $res;
+
+    }
+    public function selectCitysOf($cntr) {
         $sql = "select * from city where countryCode=? limit 5";
         $stmt = $this->con->prepare($sql);
         $stmt->execute([$cntr]);
@@ -86,9 +119,14 @@ class DaoServices {
     
 }
 
-// $dao=new DaoServices();
+$dao=new DaoServices();
+// $res=$dao->selectAll("country");
+$res=$dao->selectCapital('2486');
+// echo $res->Name;
+
+var_dump($res);
 // $dao->checkUserEmail("newemail");
-// $dao->logInUser("email","pwd1");
+// $dao->logInUser("email","pwd");
 // $dao->registerUser($arrayName = array("abdo","serghini","email","phone","pwd"));
 
 

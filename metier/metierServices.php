@@ -11,9 +11,9 @@ class Services
 
     private static $col=array();
 
-    public static function findAll($table) {
+    public static function getAll($table) {
         $serv=new DaoServices();
-        self::$col=$serv->getAll($table);
+        self::$col=$serv->selectAll($table);
         return self::$col;
     }
 
