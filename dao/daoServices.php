@@ -119,12 +119,12 @@ class DaoServices {
     
 }
 
-$dao=new DaoServices();
-// $res=$dao->selectAll("country");
-$res=$dao->selectCapital('2486');
-// echo $res->Name;
+// $dao=new DaoServices();
+// // $res=$dao->selectAll("country");
+// $res=$dao->selectCapital('2486');
+// // echo $res->Name;
 
-var_dump($res);
+// var_dump($res);
 // $dao->checkUserEmail("newemail");
 // $dao->logInUser("email","pwd");
 // $dao->registerUser($arrayName = array("abdo","serghini","email","phone","pwd"));

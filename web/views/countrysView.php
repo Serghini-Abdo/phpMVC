@@ -61,7 +61,24 @@
     
   </div>
   <div class='tab-pane' id='simple-tabpanel-1' role='tabpanel' aria-labelledby='simple-tab-1'>
-    Tab 2 selected</div>
+    Tab 2 selected:
+    <ul class="nav nav-tabs justify-content-center" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" data-bs-toggle="tab" href="#" role="tab"> Tab 1 </a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" data-bs-toggle="tab" href="#" role="tab"> Tab 2 </a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" data-bs-toggle="tab" href="#" role="tab"> Tab 3 </a>
+  </li>
+</ul>
+<div class="tab-content pt-5" id="tab-content">
+  <div class="tab-pane active" id="fill-tabpanel-0" role="tabpanel" aria-labelledby="fill-tab-0">Tab 1 selected</div>
+  <div class="tab-pane" id="fill-tabpanel-1" role="tabpanel" aria-labelledby="fill-tab-1">Tab Tab 2 selected</div>
+  <div class="tab-pane" id="fill-tabpanel-2" role="tabpanel" aria-labelledby="fill-tab-2">Tab Tab 3 selected</div>
+</div>
+  </div>
   <div class='tab-pane' id='simple-tabpanel-2' role='tabpanel' aria-labelledby='simple-tab-2'>
     Tab 3 selected</div>
 </div>
