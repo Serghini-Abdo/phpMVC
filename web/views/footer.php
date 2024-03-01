@@ -3,8 +3,8 @@
       <div class="col-6 col-md-2 mb-3">
         <h5>Continents</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Africa</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Asia</a></li>
+          <li class="nav-item mb-2"><a href="/phpMvc/countries/#africa" class="nav-link p-0 text-muted">Africa</a></li>
+          <li class="nav-item mb-2"><a href="/phpMvc/countries/#asia" class="nav-link p-0 text-muted">Asia</a></li>
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Europe</a></li>
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">North America</a></li>
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">South America</a></li>

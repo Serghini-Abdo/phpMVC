@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" id="index" data-bs-theme='light'>
 <head>
@@ -89,7 +92,9 @@
 <?php
 
 include_once __DIR__."/web/controllers/worldController.php";
+include_once __DIR__."/web/controllers/userController.php";
 use web\controllers\worldController\WorldController;
+use web\controllers\userController\UserController;
 
 
 
@@ -113,14 +118,33 @@ if (isset($_GET['url'])) {
         break;
     
         case !empty($url[0])&&empty($url[1]):
-          require_once __DIR__.'/metier/metierServices.php';
-        // switch ($url[0]) {
-        //     case '':
-        // }
-        // break;
+          if ($url[0]=="countries") {
+            $ctrl=new WorldController();
+            $ctrl->listerCountries();
+          }
+
+          break;
     
         case !empty($url[0])&&!empty($url[1])&&empty($url[2]):
-        require_once __DIR__.'/dao/daoServices.php';
+          $ctrl=new UserController();
+        if ($url[0]== "form") {
+          if ($url[1]== "logIn") {
+            
+            $ctrl->logIn() ;
+
+          }elseif ($url[1]== "signUp") {
+            $ctrl->signUp() ;
+
+          }elseif ($url[1]== "logOut") {
+            $ctrl->logOut() ;
+          }
+
+        }elseif ($url[0]== "details") {
+          
+            $ctrl=new WorldController();
+            $ctrl->details($url[1]);
+          
+        }
 
         break;
         

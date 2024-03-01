@@ -12,17 +12,26 @@ class DaoServices {
     public function __construct() {
         $this->con = new PDO("mysql:host=localhost;dbname=world","root","") or die("echec de connexion avec DB");
     }
-    public function selectAll($tab) {
-        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from $tab ";
-        $stmt = $this->con->prepare($sql);
-        $stmt->execute();
+    public function selectAll($name=null) {
+        if (isset($name)) {
+            $sql = "select * from country where Name=?";
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute([$name]);
+        }else{
+            $sql = "select * from country ";
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute();
+
+        }
+        
         $res=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($res as $row) {
             $row->Capital = $this->selectCapital($row->Capital);
         }
         return $res;
-
     }
+    
+
     public function selectCapital($cap) {
         $sql = "select Name from city where ID=? ";
         $stmt = $this->con->prepare($sql);
@@ -31,12 +40,14 @@ class DaoServices {
         return $res->Name;
 
     }
-    public function selectByContinent($tab,$cont) {
-        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from $tab where continent=? ";
+    public function selectByContinent($cont) {
+        $sql = "select Name,Continent,Region,HeadOfState,Capital,flag from country where continent=? ";
         $stmt = $this->con->prepare($sql);
         $stmt->execute([$cont]);
-        $res=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        $res["capital"] = $this->selectCapital($res["capital"]);
+        $res=$stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($res as $row) {
+            $row->Capital = $this->selectCapital($row->Capital);
+        }
         return $res;
 
     }
@@ -88,12 +99,18 @@ class DaoServices {
         return $res->nb == 0 ? true : false;
 
     }
-    public function checkUserRole($id) {
-        $sql = "select role  from users where id=?";
+    public function selectUser($cr=null) {
+        if (isset($cr)) {
+            $sql = "select *  from users where email=?";
         $stmt = $this->con->prepare($sql);
-        $stmt->execute([$id]);
-        $res=$stmt->fetch(PDO::FETCH_OBJ);
-        return $res->role == "admin" ? true : false;
+        $stmt->execute([$cr]);
+        }
+        else {
+            $sql = "select *  from users ";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute();
+        }
+        return $stmt->fetch(PDO::FETCH_OBJ);
 
     }
     public function logInUser($email,$pwd) {
@@ -106,7 +123,7 @@ class DaoServices {
             if (password_verify($pwd, $res->pwd)) {
                 // Password is correct
                 // Proceed with user authentication
-                return $msg=["res"=>true,"txt"=>""];
+                return $msg=["res"=>true,"txt"=>"loged in"];
             } else {
                 // Invalid password
                 return $msg=["res"=>false,"txt"=>"Invalid password"];
@@ -119,12 +136,12 @@ class DaoServices {
     
 }
 
-$dao=new DaoServices();
-// $res=$dao->selectAll("country");
-$res=$dao->selectCapital('2486');
-// echo $res->Name;
+// $dao=new DaoServices();
+// // $res=$dao->selectAll("country");
+// $res=$dao->selectCapital('2486');
+// // echo $res->Name;
 
-var_dump($res);
+// var_dump($res);
 // $dao->checkUserEmail("newemail");
 // $dao->logInUser("email","pwd");
 // $dao->registerUser($arrayName = array("abdo","serghini","email","phone","pwd"));

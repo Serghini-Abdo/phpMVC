@@ -11,11 +11,19 @@ class Services
 
     private static $col=array();
 
-    public static function getAll($table) {
+    public  function getAll($name=null) {
         $serv=new DaoServices();
-        self::$col=$serv->selectAll($table);
+        self::$col=$serv->selectAll($name);
         return self::$col;
     }
+    public  function getByContinent($cont) {
+        $serv=new DaoServices();
+        self::$col=$serv->selectByContinent($cont);
+        return self::$col;
+    }
+   
+
+    
 
 
 }
@@ -26,44 +34,33 @@ class UserServices
 
     public function userRegister($credt=array()) {
         $serv=new DaoServices();
-        $resp=$serv->registerUser($credt);
-        $msg = new stdClass();
+        return $serv->registerUser($credt);
         
-    
-       
-            $msg->resp =true;
-            $msg->txt = $resp['txt'];
-            return $msg;
        }
 
-    public function userLogIn($email,$pwd) {
-        //code
-        $serv=new DaoServices();
-        return $serv->logInUser($email,$pwd);
-    }
-    
+       
+       public function userLogIn($email,$pwd) {
+           
+           $serv=new DaoServices();
+           return $serv->logInUser($email,$pwd);
+       }
+
+
+       public function getUserInfo($email) {
+           
+           $serv=new DaoServices();
+           return $serv->selectUser($email);
+       }
+       public function getUsers() {
+           
+           $serv=new DaoServices();
+           return $serv->selectUser();
+       }
 }
 
 
 
-// $test=new UserServices();
-// $Q[1]=$test->userRegister(["saad","msiasd","saad@mail","045654","abcd"]);
-// $Q[2]=$test->userLogIn("saad@mail","abcd");
-// $Q[3]=$test->userLogIn("saad@mail","abcd1234");
-// $Q[4]=$test->userLogIn("saadmail","abcd");
-// for ($i=1; $i <= 4; $i++) {
-//     var_dump($Q[$i]);
-//     echo"-----------------\n";
-//     # code...
-// }
 
-// $request = $_SERVER['REQUEST_URI'];
-
-
-
-// $test=new Services();
-// print_r( $test->findAll("country"));
-// //print_r( $test->findAll("city"));
 
 
 
