@@ -25,17 +25,17 @@
 </ul>
 <div class='tab-content pt-5' id='tab-content'>
   <div class='tab-pane active' id='simple-tabpanel-0' role='tabpanel' aria-labelledby='simple-tab-0'>
-    Tab 1 selected
+    <!-- Tab 1 selected<svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
+          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
+          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
+          fill='#dee2e6' dy='.3em'>Image cap</text></svg> -->
     <?php
     echo"<div class='row row-cols-2 row-cols-md-4 g-4''>";
     foreach ($list as $contr) {
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+          <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
