@@ -12,6 +12,26 @@ class DaoServices {
     public function __construct() {
         $this->con = new PDO("mysql:host=localhost;dbname=world","root","") or die("echec de connexion avec DB");
     }
+
+
+    public function convertFlag($id) {
+        $req="select flag from country where name=?";
+        $stmt = $this->con->prepare($req);
+        $stmt->execute([$id]);
+        
+        // Fetch the image data
+        $image_data = $stmt->fetch(PDO::FETCH_COLUMN);
+        
+        
+        // Convert binary image data to base64
+        $image_data_base64 = base64_encode($image_data);
+        
+        // Create data URI
+        return $image_src = 'data:image/jpeg;base64,' . $image_data_base64;
+        
+        // Output HTML <img> tag with the image data
+        
+    }
     public function selectAll($name=null) {
         if (isset($name)) {
             $sql = "select * from country where Name=?";
@@ -27,6 +47,7 @@ class DaoServices {
         $res=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($res as $row) {
             $row->Capital = $this->selectCapital($row->Capital);
+            $row->flag = $this->convertFlag($row->Name);
         }
         return $res;
     }
@@ -47,6 +68,7 @@ class DaoServices {
         $res=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($res as $row) {
             $row->Capital = $this->selectCapital($row->Capital);
+            $row->flag = $this->convertFlag($row->Name);
         }
         return $res;
 

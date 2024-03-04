@@ -47,16 +47,35 @@ class UserServices
 
 
        public function getUserInfo($email) {
-           
+           $convert=new MetierTools();
            $serv=new DaoServices();
-           return $serv->selectUser($email);
+           $res= $serv->selectUser($email);
+           $res->avatar=$convert->blobToImage($res->avatar);
+           return $res;
        }
        public function getUsers() {
            
            $serv=new DaoServices();
            return $serv->selectUser();
        }
+
+       
 }
+
+
+class MetierTools
+{
+    public function imageToBlob($data){
+        //code
+        //$imageData = file_get_contents($fileTmpName);
+    }
+    public function blobToImage($data) {
+        
+        $image = base64_encode($data);
+        return $image_src = 'data:image/jpeg;base64,' . $image;
+}
+}
+
 
 
 

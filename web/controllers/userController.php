@@ -117,8 +117,8 @@ public function checkSession() {
               echo "<div class='flex-shrink-0 dropdown'>
             <a href='#' class='d-block link-body-emphasis text-decoration-none
             dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
-              <img src='https://github.com/mdo.png'
-               alt='mdo' width='40' height='40' class='rounded-circle'>
+              <img src=$user->avatar  alt=$user->role
+               width='40' height='40' class='rounded-circle'>
             </a>
             <ul class='dropdown-menu text-small shadow' style=''>
               <li><a class='dropdown-item' href='#'>$user->lname $user->fname</a></li>
@@ -133,7 +133,7 @@ public function checkSession() {
           echo "<div class='flex-shrink-0 dropdown'>
             <a href='#' class='d-block link-body-emphasis text-decoration-none
             dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
-              <img src='https://github.com/mdo.png' alt='mdo'
+              <img src=$user->avatar alt=$user->role
                width='40' height='40' class='rounded-circle'>
             </a>
             <ul class='dropdown-menu text-small shadow' style=''>

@@ -32,10 +32,8 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
+
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -43,7 +41,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'><i class='fa-solid fa-shield-heart'></i></button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
@@ -87,17 +86,18 @@
 <div class="tab-content pt-5" id="tab-content">
 
   <div class="tab-pane active" id="Africa" role="tabpanel" aria-labelledby="fill-tab-0">
-    <!--  -->
+    <!--<svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
+          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
+          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
+          fill='#dee2e6' dy='.3em'>Image cap</text></svg>  -->
     <?php
+    
     echo"<div class='row row-cols-2 row-cols-md-4 g-4''>";
     foreach ($africa as $contr) {
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -105,7 +105,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
@@ -140,7 +141,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
@@ -174,7 +176,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
@@ -208,7 +211,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
@@ -242,7 +246,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
@@ -276,7 +281,8 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn btn-primary p-2'>Likes</button>
+            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
+            <i class='fa-solid fa-heart'></i></i></button>
             <button class='btn btn-primary p-2 ms-auto'>More</button>
           </div>
             
