@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title><?=$title ?></title>
-</head>
-<body>
+
+  <!----------------------------------------NAVBAR---------------------------------------------->
+<?php include_once __DIR__."/navBar.php" ?>
+
 <h1><?=$titre?></h1>
 
 
@@ -41,8 +37,10 @@
             <p class='card-text'>Capital:$contr->Capital</p>
             <p class='card-text'>Leader:$contr->HeadOfState</p>
             <div class='hstack gap-3'>
-            <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
-            <i class='fa-solid fa-heart'></i></i></button>
+            <button class='btn   btn-outline-danger p-2 position-relative'><i class='fa-solid '>
+            <i class='fa-solid fa-heart '></i></i>
+            <span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary'>
+            +99 <span class='visually-hidden'>unread messages</span></span></button>
             <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
@@ -107,7 +105,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -130,10 +128,7 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -143,7 +138,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -165,10 +160,7 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -178,7 +170,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -200,10 +192,7 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -213,7 +202,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -235,10 +224,7 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -248,7 +234,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -270,10 +256,7 @@
         echo "
       <div class='col'>
         <div class='card'>
-          <svg class='bd-placeholder-img card-img-top' width='100%' height='140' xmlns='http://www.w3.org/2000/svg'
-          role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'>
-          <title>Placeholder</title><rect width='100%' height='100%' fill='#868e96'></rect><text x='50%' y='50%'
-          fill='#dee2e6' dy='.3em'>Image cap</text></svg>
+        <img class='bd-placeholder-img card-img-top' width='100%' height='140' src='$contr->flag'>
           <div class='card-body'>
             <h5 class='card-title'>$contr->Name</h5>
             <p class='card-text'>Continent:$contr->Continent</p>
@@ -283,7 +266,7 @@
             <div class='hstack gap-3'>
             <button class='btn   btn-outline-danger p-2'><i class='fa-solid '>
             <i class='fa-solid fa-heart'></i></i></button>
-            <button class='btn btn-primary p-2 ms-auto'>More</button>
+            <a href='/phpMVC/details/$contr->Name' class='btn btn-primary p-2 ms-auto'>More</a>
           </div>
             
 
@@ -308,34 +291,10 @@
 
 
 
-    <!-- <table class='table table-striped'>
-        <caption></caption>
-        <thead>
-    <tr>
-        <th><i class='fa-solid fa-house'></i>Code</th>
-        <th>Name</th>
-        <th>Continent</th>
-        <th>Operations</th>
-    </tr>
-    </thead>
-    <?php
-        // echo '<tbody>';
-        // foreach ($list as $slr) {
-        //     echo ' <tr>
-        //     <th>$slr->Code</th>
-        //     <th>$slr->Name</th>
-        //     <th>$slr->Continent</th>
-        //     <th><a href='/phpMVC/home'>home</a>  | <a href='/phpMVC/contact'>contact</a> |
-        //      <a href='/phpMVC/detail'>Supprimer</a></th>
-        // </tr>';
-        // }
-        // echo '</tbody>';
+  
+ 
+<!----------------------------------------FOOTER---------------------------------------------->
 
-?>
+<?php include_once __DIR__."/footer.php" ?>   
 
-    </table> -->
 
-    
-
-</body>
-</html>

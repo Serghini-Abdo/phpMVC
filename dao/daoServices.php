@@ -14,27 +14,17 @@ class DaoServices {
     }
 
 
-    public function convertFlag($id) {
-        $req="select flag from country where name=?";
-        $stmt = $this->con->prepare($req);
-        $stmt->execute([$id]);
+    public function insertFlag($data,$cr) {
+        $sql="update country set flag=? where name=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute([$data, $cr]);
         
-        // Fetch the image data
-        $image_data = $stmt->fetch(PDO::FETCH_COLUMN);
-        
-        
-        // Convert binary image data to base64
-        $image_data_base64 = base64_encode($image_data);
-        
-        // Create data URI
-        return $image_src = 'data:image/jpeg;base64,' . $image_data_base64;
-        
-        // Output HTML <img> tag with the image data
+       
         
     }
     public function selectAll($name=null) {
         if (isset($name)) {
-            $sql = "select * from country where Name=?";
+            $sql = "select * from country  where Name=?";
             $stmt = $this->con->prepare($sql);
             $stmt->execute([$name]);
         }else{
@@ -47,9 +37,11 @@ class DaoServices {
         $res=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($res as $row) {
             $row->Capital = $this->selectCapital($row->Capital);
-            $row->flag = $this->convertFlag($row->Name);
+            
         }
+        
         return $res;
+        
     }
     
 
@@ -68,7 +60,6 @@ class DaoServices {
         $res=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($res as $row) {
             $row->Capital = $this->selectCapital($row->Capital);
-            $row->flag = $this->convertFlag($row->Name);
         }
         return $res;
 
@@ -105,7 +96,7 @@ class DaoServices {
                 return $msg=["res"=>true,"txt"=>"user registered successfully"];
             }
             else {
-                return $msg=["res"=>true,"txt"=>"email already registered"];
+                return $msg=["res"=>false,"txt"=>"email already registered"];
             }
         } catch (\Throwable $th) {
             //throw $th;
@@ -126,13 +117,15 @@ class DaoServices {
             $sql = "select *  from users where email=?";
         $stmt = $this->con->prepare($sql);
         $stmt->execute([$cr]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
         }
         else {
             $sql = "select *  from users ";
         $stmt = $this->con->prepare($sql);
         $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        
 
     }
     public function logInUser($email,$pwd) {
@@ -154,6 +147,30 @@ class DaoServices {
             return $msg=["res"=>false,"txt"=>"user with email not regisetred"];
         }
 
+    }
+
+
+
+
+
+    public function updateUser($credt) {
+        try {
+            $sql = "update users set fname=? ,lname=?,phone=?,avatar=?,adr=?,birth=?,civ=? where email=?";
+            $stmt = $this->con->prepare($sql);
+            $msg=new stdClass() ;
+            $chk=$this->checkUserEmail($credt[7]);
+            if (!$chk) {
+                $stmt->execute([$credt[0],$credt[1],$credt[2],$credt[3],$credt[4],$credt[5],$credt[6],$credt[7]]);
+                return $msg=["res"=>true,"txt"=>"account updated successfully"];
+            }
+            else {
+                return $msg=["res"=>false,"txt"=>"email can't be changed"];
+            }
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $msg=["res"=>false,"txt"=>$th];
+        }
     }
     
 }

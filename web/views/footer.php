@@ -1,4 +1,5 @@
-<footer class="py-5">
+<footer class="py-5  footer">
+  <div class="container"></div>
     <div class="row">
       
 
@@ -39,6 +40,7 @@
             <a class="link-dark" href="#">
                 <svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
       </ul>
+    </div>
     </div>
   </footer>
 

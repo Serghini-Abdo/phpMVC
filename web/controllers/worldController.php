@@ -29,6 +29,29 @@ class WorldController {
         require_once __DIR__ ."/../views/countryDetailsView.php";
     }
 
+
+    public function city() {
+        header('Content-Type: text/plain');
+
+        $currentTime = date('Y-m-d H:i:s');
+return "hello";
+
+
+    }
+
+    public function updateFlag($name) {
+        $world=new Services();
+
+        $data=$_FILES["fileToUpload"]["tmp_name"];
+        $world->postFlag($data,$name);
+
+        echo "<script>window.location.href = '/phpMVC/details/$name';</script>";
+
+
+
+
+    }
+
 }
 
 

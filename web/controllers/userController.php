@@ -6,7 +6,7 @@ use metier\metierServices\UserServices;
 class UserController
 {
 
-//-----------------SIGNUP--------------
+//-----------------SIGNUP----------------------------------
 
 
 
@@ -42,7 +42,7 @@ class UserController
 
 
 
-//-----------------LOGIN--------------
+//-----------------LOGIN-----------------------------------
 
 
 
@@ -82,7 +82,7 @@ class UserController
 
 
 
-//-----------------LOGOUT--------------
+//-----------------LOGOUT-------------------------------------
 
 
 
@@ -94,15 +94,77 @@ class UserController
     }
 
 
+//--------------------user profile------------------------------
 
+
+public function profile($email){
+  $metier = new UserServices();
+  $user=$metier->getUserInfo($email);
+  $admin=$metier->getUserInfo($_SESSION['email']);
+  if ($email == $_SESSION['email']||$admin->role=="admin") {
+    
+     require_once __DIR__ .'/../views/profileView.php';
+  }else {
+    require_once __DIR__ .'/../views/405.php';
+  }
+ 
+
+
+}
+
+//------------------------update profile-----------------------
+
+
+public function updateProfile($email){
+
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve data from the form
+
+    $tab[0] = $_POST["fname"];
+    $tab[1] = $_POST["lname"];
+    $tab[2] = $_POST["phone"];
+    $tab[3] = $_FILES["fileToUpload"]["tmp_name"];
+    $tab[4] = $_POST["adr"];
+    $tab[5] = $_POST["birth"];
+    $tab[6] = $_POST["civ"];
+    $tab[7] = $_POST["email"];
+    $metier = new UserServices();
+    $resp=$metier->userUpdate($tab);
+    if ($resp['res']) {
+      
+      echo '<script>window.location.href = "/phpMVC/profile/'.$email.'";</script>';
+      echo $resp['txt'];
+      // echo'<script>alert("'.$resp['txt'].'")</script>';
+
+      // header('Location: /phpMVC');
+
+      
+      
+    }else{
+      echo '<script>window.location.href = "/phpMVC/profile/$tab[7]";</script>';
+      echo'<script>alert("'.$resp['txt'].'")</script>';
+    }
+
+}
+}
+
+
+//------------------------admin dashboard-----------------------
+public function dashboard(){
+  $metier = new UserServices();
+  $users=$metier->getUsers();
+  require_once __DIR__ .'/../views/adminDashView.php';
+
+
+}
 
 //-----------------TOGGLE--USERBADGE---SIGNUP/LOGIN--------------
 
 
-
 public function checkSession() {
         
-        $id='sam';
+        
         // Check session status
         // $stat=session_status();
 
@@ -123,7 +185,7 @@ public function checkSession() {
             <ul class='dropdown-menu text-small shadow' style=''>
               <li><a class='dropdown-item' href='#'>$user->lname $user->fname</a></li>
               <li><a class='dropdown-item' href='/phpMVC/dashboard/'>dashbaord</a></li>
-              <li><a class='dropdown-item' href='/phpMVC/profile'>Profile</a></li>
+              <li><a class='dropdown-item' href='/phpMVC/profile/$user->email'>Profile</a></li>
               <li><a class='dropdown-item' href='/phpMVC/plus'>Plus</a></li>
               <li><hr class='dropdown-divider'></li>
               <li><a class='dropdown-item' href='/phpMVC/form/logOut'>Sign out</a></li>
@@ -139,7 +201,7 @@ public function checkSession() {
             <ul class='dropdown-menu text-small shadow' style=''>
               <li><a class='dropdown-item' href='#'>$user->lname $user->fname</a></li>
               <li><a class='dropdown-item' href='/phpMVC/settings/'>Settings</a></li>
-              <li><a class='dropdown-item' href='/phpMVC/profile'>Profile</a></li>
+              <li><a class='dropdown-item' href='/phpMVC/profile/$user->email'>Profile</a></li>
               <li><hr class='dropdown-divider'></li>
               <li><a class='dropdown-item' href='/phpMVC/form/logOut'>Sign out</a></li>
             </ul>

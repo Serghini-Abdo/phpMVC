@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?></title>
-</head>
-<body>
+<!----------------------------------------NAVBAR---------------------------------------------->
+<?php include_once __DIR__."/navBar.php" ?>
+
+
 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Welcome to Our World Countries and Cities Database!</h1>
@@ -38,5 +34,8 @@
       </div>
     </div>
     
-</body>
-</html>
+
+<!----------------------------------------FOOTER---------------------------------------------->
+
+<?php include_once __DIR__."/footer.php" ?>
+

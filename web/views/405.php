@@ -1,5 +1,5 @@
 <!----------------------------------------NAVBAR---------------------------------------------->
 <?php include_once __DIR__."/navBar.php" ?>
 
-   <h1>ERROR 404 NOT FOUND :(</h1>
-   
+<h1>ERROR 405 NOT ALLOWED :(</h1>
+
